@@ -1,0 +1,28 @@
+{
+  "name": "go-webauthn-example",
+  "version": "0.0.0-demo",
+  "description": "Example app for illustrating WebAuthn with go-webauthn",
+  "private": true,
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "npm run dev -w client"
+  },
+  "workspaces": [
+    "client"
+  ],
+  "keywords": [
+    "go-webauthn",
+    "webauthn-demo",
+    "webauthn-example"
+  ],
+  "author": "Sibiraj",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.1.0"
+  }
+}
