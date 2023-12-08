@@ -6,17 +6,16 @@ Note: This is just an example, in real world you might want to think about every
 
 ## Getting Started
 
-- Clone the repository
-- cd into the directory
-  ```
-  cd go-webauthn
-  ```
+Clone the repository
+
+```bash
+git clone https://github.com/sibiraj-s/go-webauthn-example
+cd go-webauthn
+```
 
 ## Prerequisites
 
-- Nodejs
-
-Nodejs can be installed with [nvm](https://github.com/nvm-sh/nvm)
+- Nodejs - can be installed with [nvm](https://github.com/nvm-sh/nvm)
 
 - Golang
 
