@@ -1,4 +1,4 @@
-import { base64url } from './base64-url';
+import { base64url } from '@/lib/base64-url';
 import * as T from '@/types';
 
 export function arrayBufferDecode(value: string): ArrayBuffer {

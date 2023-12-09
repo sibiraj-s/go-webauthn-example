@@ -1,4 +1,4 @@
-// Ref https://github.dev/google/webauthndemo/blob/dd48eeec276b47c70b42af37f0141e81a3a43916/src/public/scripts/base64url.ts
+// Source: https://github.com/google/webauthndemo/blob/dd48eeec276b47c70b42af37f0141e81a3a43916/src/public/scripts/base64url.ts
 
 const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 

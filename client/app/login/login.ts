@@ -13,10 +13,10 @@ export async function finishLogin(payload: T.PublicKeyCredentialJSON) {
 }
 
 async function requestCredential(username: string) {
-  const publickKeyCredentialsOptions = await beginLogin(username);
+  const publicKeyCredentialsRequestOptions = await beginLogin(username);
 
   const credential = await navigator.credentials.get({
-    publicKey: publickKeyCredentialsOptions,
+    publicKey: publicKeyCredentialsRequestOptions,
   });
 
   if (!credential) {
@@ -27,8 +27,8 @@ async function requestCredential(username: string) {
 }
 
 async function verifyCredential(credential: PublicKeyCredential) {
-  const payload = encodeAssertionPublicKeyCredential(credential);
-  await finishLogin(payload);
+  const assertion = encodeAssertionPublicKeyCredential(credential);
+  await finishLogin(assertion);
 }
 
 export default async function loginUser(email: string) {

@@ -13,10 +13,10 @@ async function finishRegister(payload: T.AttestationPublicKeyCredentialJSON) {
 }
 
 async function requestCredential(email: string) {
-  const publickKeyCredentialsOptions = await beginRegister(email);
+  const publicKeyCredentialsCreateOptions = await beginRegister(email);
 
   const credential = await navigator.credentials.create({
-    publicKey: publickKeyCredentialsOptions,
+    publicKey: publicKeyCredentialsCreateOptions,
   });
 
   if (!credential) {
@@ -27,8 +27,8 @@ async function requestCredential(email: string) {
 }
 
 async function verifyCredential(credential: T.AttestationPublicKeyCredential) {
-  const payload = encodeAttestationPublicKeyCredential(credential);
-  await finishRegister(payload);
+  const attestation = encodeAttestationPublicKeyCredential(credential);
+  await finishRegister(attestation);
 }
 
 export default async function createCredentials(email: string) {
