@@ -1,7 +1,7 @@
 package server
 
-var host = "passkeys.local"
-var clientOrigin = "https://passkeys.local"
-var clientOriginWithPort = "https://passkeys.local:7890"
-var cookieDomain = "passkeys.local"
+var host = "webauthn.local"
+var clientOrigin = "https://webauthn.local"
+var clientOriginWithPort = "https://webauthn.local:7890"
+var cookieDomain = "webauthn.local"
 var clientProxyOrigin = "http://localhost:3000"

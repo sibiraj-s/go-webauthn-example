@@ -25,7 +25,7 @@ Use [Homebrew](https://brew.sh/) to install golang
 brew install golang
 ```
 
-These are just recomended ways to install. You can use whatever tools you like.
+These are just recomended ways to install. You can use whatever tools you prefer.
 
 ## Directory structure
 
@@ -72,17 +72,17 @@ After that, navigate to certs directory
 ```bash
 cd certs
 # then
-mkcert passkeys.local
+mkcert webauthn.local
 ```
 
-Also, you'd need to add the entry `passkeys.local` to your `/etc/host`
+Also, you'd need to add the entry `webauthn.local` to your `/etc/host`
 
 ```
-127.0.0.1 passkeys.local
+127.0.0.1 webauthn.local
 ```
 
-We are creating the custom domain, to test all the features. Some only work on `https` environment or even password managers like Bitwarden and 1Password or others would pick up passkeys request only on
-https environment.
+We are creating the custom domain, to test all the features. Some only work on `https` environment or even password managers like Bitwarden and 1Password or others would pick up some request only on
+secure context.
 
 Now start the server
 
@@ -90,6 +90,6 @@ Now start the server
 go run .
 ```
 
-Thats it 🎉. You can now visit https://passkeys.local to see the server running.
+Thats it 🎉. You can now visit https://webauthn.local to see the server running.
 
 Note: The go server proxies the requests to next.js dev server running at port 3000.

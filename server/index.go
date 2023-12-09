@@ -56,5 +56,5 @@ func Run() {
 	// handle all other requests to client using the proxy
 	router.NoRoute(proxyClient)
 
-	router.RunTLS("localhost:7890", "./certs/passkeys.local.pem", "./certs/passkeys.local-key.pem")
+	router.RunTLS("localhost:7890", "./certs/webauthn.local.pem", "./certs/webauthn.local-key.pem")
 }

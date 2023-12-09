@@ -5,8 +5,8 @@ import './globals.css';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Passkeys Demo',
-  description: 'Using Webauthn. A demo for Passkeys',
+  title: 'WebAuthn Demo',
+  description: 'A demo for WebAuthn spec',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
