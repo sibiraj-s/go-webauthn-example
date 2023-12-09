@@ -1,5 +1,5 @@
 import { base64url } from '@/lib/base64-url';
-import * as T from '@/types';
+import * as Types from '@/credentials.types';
 
 export function arrayBufferDecode(value: string): ArrayBuffer {
   return base64url.decode(value);
@@ -10,7 +10,7 @@ export function arrayBufferEncode(value: ArrayBuffer): string {
 }
 
 function decodePublicKeyCredentialDescriptor(
-  descriptor: T.PublicKeyCredentialDescriptorJSON,
+  descriptor: Types.PublicKeyCredentialDescriptorJSON,
 ): PublicKeyCredentialDescriptor {
   return {
     id: arrayBufferDecode(descriptor.id),
@@ -19,7 +19,7 @@ function decodePublicKeyCredentialDescriptor(
   };
 }
 
-export function decodeCredentialsOptions(options: T.PublicKeyCredentialCreationOptionsJSON) {
+export function decodeCredentialsOptions(options: Types.PublicKeyCredentialCreationOptionsJSON) {
   return {
     attestation: options.attestation,
     authenticatorSelection: options.authenticatorSelection,
@@ -37,8 +37,35 @@ export function decodeCredentialsOptions(options: T.PublicKeyCredentialCreationO
   };
 }
 
+function getTransports(response?: AuthenticatorAttestationResponse): AuthenticatorTransport[] {
+  if (typeof response?.getTransports !== 'function') {
+    return [];
+  }
+
+  return response.getTransports() as AuthenticatorTransport[];
+}
+
+export function encodeAttestationPublicKeyCredential(
+  credential: PublicKeyCredential,
+): Types.AttestationPublicKeyCredentialJSON {
+  const response = credential.response as AuthenticatorAttestationResponse;
+
+  return {
+    id: credential.id,
+    type: credential.type,
+    rawId: arrayBufferEncode(credential.rawId),
+    clientExtensionResults: credential.getClientExtensionResults(),
+    authenticatorAttachment: credential.authenticatorAttachment,
+    response: {
+      attestationObject: arrayBufferEncode(response.attestationObject),
+      clientDataJSON: arrayBufferEncode(response.clientDataJSON),
+    },
+    transports: getTransports(response),
+  };
+}
+
 export function decodePublicKeyCredentialRequestOptions(
-  options: T.PublicKeyCredentialRequestOptionsJSON,
+  options: Types.PublicKeyCredentialRequestOptionsJSON,
 ): PublicKeyCredentialRequestOptions {
   let allowCredentials: PublicKeyCredentialDescriptor[] | undefined;
 
@@ -56,31 +83,7 @@ export function decodePublicKeyCredentialRequestOptions(
   };
 }
 
-export function encodeAttestationPublicKeyCredential(
-  credential: T.AttestationPublicKeyCredential,
-): T.AttestationPublicKeyCredentialJSON {
-  const response = credential.response as T.AuthenticatorAttestationResponseFuture;
-
-  let transports: AuthenticatorTransport[] | undefined;
-
-  if (response?.getTransports !== undefined && typeof response.getTransports === 'function') {
-    transports = response.getTransports();
-  }
-
-  return {
-    id: credential.id,
-    type: credential.type,
-    rawId: arrayBufferEncode(credential.rawId),
-    clientExtensionResults: credential.getClientExtensionResults(),
-    response: {
-      attestationObject: arrayBufferEncode(response.attestationObject),
-      clientDataJSON: arrayBufferEncode(response.clientDataJSON),
-    },
-    transports,
-  };
-}
-
-export function encodeAssertionPublicKeyCredential(credential: PublicKeyCredential): T.PublicKeyCredentialJSON {
+export function encodeAssertionPublicKeyCredential(credential: PublicKeyCredential): Types.PublicKeyCredentialJSON {
   const response = credential.response as AuthenticatorAssertionResponse;
 
   let userHandle: string;
@@ -96,6 +99,7 @@ export function encodeAssertionPublicKeyCredential(credential: PublicKeyCredenti
     type: credential.type,
     rawId: arrayBufferEncode(credential.rawId),
     clientExtensionResults: credential.getClientExtensionResults(),
+    authenticatorAttachment: credential.authenticatorAttachment,
     response: {
       authenticatorData: arrayBufferEncode(response.authenticatorData),
       clientDataJSON: arrayBufferEncode(response.clientDataJSON),

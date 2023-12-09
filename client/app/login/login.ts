@@ -1,13 +1,13 @@
 import { decodePublicKeyCredentialRequestOptions, encodeAssertionPublicKeyCredential } from '@/utils/credentials';
 import api from '@/utils/axios';
-import * as T from '@/types';
+import * as Types from '@/credentials.types';
 
 export async function beginLogin(email: string) {
   const response = await api.post('/login/begin', { email });
   return decodePublicKeyCredentialRequestOptions(response.data);
 }
 
-export async function finishLogin(payload: T.PublicKeyCredentialJSON) {
+export async function finishLogin(payload: Types.PublicKeyCredentialJSON) {
   const response = await api.post('/login/finish', payload);
   return response.data;
 }

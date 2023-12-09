@@ -1,13 +1,13 @@
 import { decodeCredentialsOptions, encodeAttestationPublicKeyCredential } from '@/utils/credentials';
-import * as T from '@/types';
 import api from '@/utils/axios';
+import * as Types from '@/credentials.types';
 
 async function beginRegister(email: string) {
   const response = await api.post('/register/begin', { email });
   return decodeCredentialsOptions(response.data);
 }
 
-async function finishRegister(payload: T.AttestationPublicKeyCredentialJSON) {
+async function finishRegister(payload: Types.AttestationPublicKeyCredentialJSON) {
   const response = await api.post('/register/finish', payload);
   return response.data;
 }
@@ -23,10 +23,10 @@ async function requestCredential(email: string) {
     throw 'Unable to fetch credential';
   }
 
-  return credential as T.AttestationPublicKeyCredential;
+  return credential as PublicKeyCredential;
 }
 
-async function verifyCredential(credential: T.AttestationPublicKeyCredential) {
+async function verifyCredential(credential: PublicKeyCredential) {
   const attestation = encodeAttestationPublicKeyCredential(credential);
   await finishRegister(attestation);
 }
