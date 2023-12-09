@@ -1,4 +1,4 @@
-package main
+package server
 
 var host = "passkeys.local"
 var clientOrigin = "https://passkeys.local"

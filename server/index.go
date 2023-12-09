@@ -1,4 +1,4 @@
-package main
+package server
 
 import (
 	"log"
@@ -14,7 +14,7 @@ var (
 	err error
 )
 
-func main() {
+func Run() {
 	// Your initialization function
 	web, err = webauthn.New(&webauthn.Config{
 		RPDisplayName: "Acme Corp.",         // Display Name for your site
@@ -56,5 +56,5 @@ func main() {
 	// handle all other requests to client using the proxy
 	router.NoRoute(proxyClient)
 
-	router.RunTLS("localhost:7890", "passkeys.local.pem", "passkeys.local-key.pem")
+	router.RunTLS("localhost:7890", "./certs/passkeys.local.pem", "./certs/passkeys.local-key.pem")
 }

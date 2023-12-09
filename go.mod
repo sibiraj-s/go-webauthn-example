@@ -1,4 +1,4 @@
-module sibiraj/go-webauthn-demo
+module go-webauthn-demo
 
 go 1.21.5
 

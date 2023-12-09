@@ -67,10 +67,10 @@ mkcert -install
 
 This will ask for password if you are running for the first time.
 
-After that, navigate to server directory
+After that, navigate to certs directory
 
 ```bash
-cd server
+cd certs
 # then
 mkcert passkeys.local
 ```
