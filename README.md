@@ -1,4 +1,4 @@
-# go-webauthn
+# WebAuthn Demo
 
 > A demo for webauthn using go-webauthn
 
