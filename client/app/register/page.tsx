@@ -1,6 +1,6 @@
-import SignupForm from './SignupForm';
+import RegisterForm from './RegisterFrom';
 
-export default function Signup() {
+export default function Register() {
   return (
     <section className="h-full">
       <div className="mx-auto flex h-full flex-col items-center justify-center px-6 py-8 md:h-screen lg:py-0">
@@ -12,7 +12,7 @@ export default function Signup() {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 dark:text-white md:text-2xl">
               Create your account
             </h1>
-            <SignupForm />
+            <RegisterForm />
           </div>
         </div>
       </div>

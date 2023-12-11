@@ -6,20 +6,20 @@ import { useRouter } from 'next/navigation';
 
 import createCredentials from './register';
 
-type SignupFormInputs = {
+type RegisterFormInputs = {
   email: string;
 };
 
-export default function SignupForm() {
+export default function RegisterForm() {
   const router = useRouter();
 
-  const { register, handleSubmit, formState } = useForm<SignupFormInputs>({
+  const { register, handleSubmit, formState } = useForm<RegisterFormInputs>({
     defaultValues: {
       email: 'johndoe@acme.com',
     },
   });
 
-  const handleFormSubmit: SubmitHandler<SignupFormInputs> = async (data) => {
+  const handleFormSubmit: SubmitHandler<RegisterFormInputs> = async (data) => {
     try {
       await createCredentials(data.email);
       router.push(`/login?user=${data.email}`, {});
@@ -46,7 +46,7 @@ export default function SignupForm() {
         className="w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
         disabled={formState.isSubmitting}
       >
-        Sign up
+        Register
       </button>
       <p className="text-sm font-light text-gray-500 dark:text-gray-400">
         Already having an account?{' '}
