@@ -9,7 +9,7 @@ type LoginFormInputs = {
   email: string;
 };
 
-export default function SignupForm() {
+export default function LoginForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
