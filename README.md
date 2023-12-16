@@ -1,8 +1,9 @@
 # WebAuthn Demo
 
-> A demo for webauthn using go-webauthn
+A demo for webauthn using go-webauthn
 
-Note: This is just an example, in real world you might want to think about every security aspects.
+> [!WARNING]
+> This is just an example, in real world you might want to think about every security aspects.
 
 ## Getting Started
 
