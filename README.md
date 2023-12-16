@@ -2,7 +2,7 @@
 
 A demo for webauthn using go-webauthn
 
-> [!WARNING]
+> [!CAUTION]
 > This is just an example, in real world you might want to think about every security aspects.
 
 ## Getting Started
