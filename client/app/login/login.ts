@@ -1,3 +1,5 @@
+import { toast } from 'sonner';
+
 import { decodePublicKeyCredentialRequestOptions, encodeAssertionPublicKeyCredential } from '@/utils/credentials';
 import api from '@/utils/axios';
 import * as Types from '@/credentials.types';
@@ -37,7 +39,7 @@ export default async function loginUser(email: string) {
     await verifyCredential(credential);
   } catch (err) {
     console.error('Unable to login user', err);
-    alert('Failed to login user.');
+    toast.error('Failed to login user.');
     throw err;
   }
 }

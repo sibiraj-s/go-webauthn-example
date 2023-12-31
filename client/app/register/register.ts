@@ -1,3 +1,5 @@
+import { toast } from 'sonner';
+
 import { decodeCredentialsOptions, encodeAttestationPublicKeyCredential } from '@/utils/credentials';
 import api from '@/utils/axios';
 import * as Types from '@/credentials.types';
@@ -35,10 +37,10 @@ export default async function createCredentials(email: string) {
   try {
     const credential = await requestCredential(email);
     await verifyCredential(credential);
-    alert('Registration success.');
+    toast.success('Successfully registered user.');
   } catch (err) {
     console.error('Unable to register user', err);
-    alert('Failed to register user.');
+    toast.error('Unable to register user.');
     throw err;
   }
 }
