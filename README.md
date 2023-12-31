@@ -91,7 +91,7 @@ Now start the server
 go run .
 ```
 
-Thats it 🎉. You can now visit https://webauthn.local to see the server running.
+Thats it 🎉. You can now visit https://webauthn.local:7890 to see the server running.
 
 > [!NOTE]
 > The go server proxies the requests to next.js dev server running at port 3000.
