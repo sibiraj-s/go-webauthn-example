@@ -4,7 +4,7 @@
   "description": "Example app for illustrating WebAuthn with go-webauthn",
   "private": true,
   "scripts": {
-    "prepare": "husky install",
+    "prepare": "husky",
     "dev": "npm run dev -w client"
   },
   "workspaces": [
