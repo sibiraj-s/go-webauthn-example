@@ -91,6 +91,12 @@ Now start the server
 go run .
 ```
 
+To start the server with hot reloading. Install [air](https://github.com/air-verse/air) and then run
+
+```bash
+air -c .air.toml
+```
+
 Thats it 🎉. You can now visit https://webauthn.local:7890 to see the server running.
 
 > [!NOTE]
