@@ -11,8 +11,7 @@ env:
   NEXT_TELEMETRY_DISABLED: 1
 
 jobs:
-  build:
-    name: Client
+  client:
     runs-on: ubuntu-latest
 
     steps:
@@ -30,3 +29,24 @@ jobs:
 
       - name: Build client
         run: npm run build
+
+  backend:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Create phony certificate
+        run: |
+          mkdir -p certs
+          echo "" > certs/webauthn.local-key.pem
+          echo "" > certs/webauthn.local.pem
+
+      - name: Build backend
+        run: go build .
