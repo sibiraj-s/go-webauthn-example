@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "prepare": "husky",
-    "dev": "npm run dev -w client"
+    "dev": "npm run dev -w client",
+    "build": "npm run build -w client"
   },
   "workspaces": [
     "client"

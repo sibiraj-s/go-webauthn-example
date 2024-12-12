@@ -29,7 +29,7 @@ export interface PublicKeyCredentialCreationOptionsJSON
 
 // encoded credentions to be sent to server to finish registration
 export interface AttestationPublicKeyCredentialJSON
-  extends Omit<PublicKeyCredential, 'response' | 'rawId' | 'getClientExtensionResults'> {
+  extends Omit<PublicKeyCredential, 'response' | 'rawId' | 'getClientExtensionResults' | 'toJSON'> {
   rawId: string;
   response: AuthenticatorAttestationResponseJSON;
   clientExtensionResults: AuthenticationExtensionsClientOutputs;
@@ -45,7 +45,7 @@ export interface PublicKeyCredentialRequestOptionsJSON
 
 // encoded credentions to be sent to server to finish login
 export interface PublicKeyCredentialJSON
-  extends Omit<PublicKeyCredential, 'rawId' | 'response' | 'getClientExtensionResults'> {
+  extends Omit<PublicKeyCredential, 'rawId' | 'response' | 'getClientExtensionResults' | 'toJSON'> {
   rawId: string;
   clientExtensionResults: AuthenticationExtensionsClientOutputs;
   response: AuthenticatorAssertionResponseJSON;
