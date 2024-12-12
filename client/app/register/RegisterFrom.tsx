@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+
 import createCredentials from './register';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 type RegisterFormInputs = {
   email: string;
@@ -27,33 +32,30 @@ export default function RegisterForm() {
   };
 
   return (
-    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleFormSubmit)}>
-      <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-          Your email
-        </label>
-        <input
-          type="email"
-          id="email"
-          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-indigo-600 focus:ring-indigo-600 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500 sm:text-sm"
-          placeholder="Enter your email"
-          required
-          {...register('email')}
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-        disabled={formState.isSubmitting}
-      >
-        Register
-      </button>
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        Already having an account?{' '}
-        <Link href="/login" className="font-medium text-indigo-600 hover:underline dark:text-indigo-500">
-          Log in
-        </Link>
-      </p>
-    </form>
+    <Card className="mx-auto w-full max-w-sm py-10">
+      <CardHeader>
+        <CardTitle className="text-2xl">Register</CardTitle>
+        <CardDescription>Enter your email below to create your account</CardDescription>
+      </CardHeader>
+      <CardContent className="mt-4">
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
+          <div className="grid gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Your email</Label>
+              <Input type="email" id="email" placeholder="Enter your email" required {...register('email')} />
+            </div>
+            <Button type="submit" disabled={formState.isSubmitting}>
+              Register
+            </Button>
+          </div>
+          <p className="mt-8 text-sm">
+            Already having an account?{' '}
+            <Link href="/login" className="font-medium text-indigo-400 underline underline-offset-4">
+              Log in
+            </Link>
+          </p>
+        </form>
+      </CardContent>
+    </Card>
   );
 }

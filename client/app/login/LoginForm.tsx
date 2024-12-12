@@ -2,8 +2,14 @@
 
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { useQueryState } from 'nuqs';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Label } from '@/components/ui/label';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 import loginUser from './login';
 
@@ -13,11 +19,11 @@ type LoginFormInputs = {
 
 export default function LoginForm() {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const [email] = useQueryState('email', { defaultValue: '' });
 
   const { register, handleSubmit, formState } = useForm<LoginFormInputs>({
     defaultValues: {
-      email: searchParams.get('user') ?? '',
+      email,
     },
   });
 
@@ -30,33 +36,36 @@ export default function LoginForm() {
   };
 
   return (
-    <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit(handleFormSubmit)}>
-      <div>
-        <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
-          Your email
-        </label>
-        <input
-          type="text"
-          className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900 focus:border-indigo-600 focus:ring-indigo-600 sm:text-sm dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="Enter your email"
-          required
-          autoComplete="webauthn"
-          {...register('email')}
-        />
-      </div>
-      <button
-        type="submit"
-        className="w-full rounded-lg bg-indigo-600 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800"
-        disabled={formState.isSubmitting}
-      >
-        Authenticate
-      </button>
-      <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-        Don&apos;t have an account yet?{' '}
-        <Link href="/register" className="font-medium text-indigo-600 hover:underline dark:text-indigo-500">
-          Register
-        </Link>
-      </p>
-    </form>
+    <Card className="mx-auto w-full max-w-sm py-10">
+      <CardHeader>
+        <CardTitle className="text-2xl">Login</CardTitle>
+        <CardDescription>Enter your email below to login to your account</CardDescription>
+      </CardHeader>
+      <CardContent className="mt-4">
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
+          <div className="grid gap-6">
+            <div className="grid gap-2">
+              <Label htmlFor="email">Your email</Label>
+              <Input
+                type="text"
+                placeholder="Enter your email"
+                required
+                autoComplete="webauthn"
+                {...register('email')}
+              />
+            </div>
+            <Button type="submit" disabled={formState.isSubmitting}>
+              Authenticate
+            </Button>
+          </div>
+          <p className="mt-8 text-sm">
+            Don&apos;t have an account yet?{' '}
+            <Link href="/register" className="font-medium text-indigo-400 underline underline-offset-4">
+              Register
+            </Link>
+          </p>
+        </form>
+      </CardContent>
+    </Card>
   );
 }
