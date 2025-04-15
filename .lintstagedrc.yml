@@ -1,5 +1,5 @@
 '*.{js,ts,jsx,tsx}':
-  - eslint --fix
+  - oxlint --nextjs-plugin --fix
   - prettier --write
 
 '*.{md,html.json}':
