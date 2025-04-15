@@ -20,11 +20,11 @@
   "license": "MIT",
   "devDependencies": {
     "eslint": "^8.57.1",
-    "eslint-config-next": "^15.1.0",
+    "eslint-config-next": "^15.3.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.7",
-    "lint-staged": "^15.2.11",
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.9"
+    "lint-staged": "^15.5.1",
+    "prettier": "^3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }
